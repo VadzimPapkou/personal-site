@@ -1,0 +1,45 @@
+{
+  "name": "Vadim Popkov",
+  "title": "Frontend Developer",
+  "phone": "+375333930022",
+  "location": "Minsk, Belarus",
+  "github": "trueshadowguard",
+  "sections": {
+    "experience": "Опыт работы",
+    "skills": "Навыки",
+    "languages": "Языки"
+  },
+  "experience": {
+    "company": "InvestEra",
+    "position": "FrontEnd Developer",
+    "period": "Янв 2024 – настоящее время",
+    "location": "Минск, Беларусь",
+    "description": "Разрабатываю аналитический сервис для инвесторов.",
+    "subtitle": "В результате моей работы:",
+    "achievements": [
+      "Внедрил практику создания переиспользуемых компонентов, что значительно ускорило разработку и увеличило скорость загрузки сайта",
+      "Увеличил скорость загрузки на 80% за счет бандлинга JavaScript кода и ленивой загрузки, улучшив пользовательский опыт и повысив метрики Google.",
+      "Улучшил производительность приложения на 20% используя мемоизацию компонентов и оптимизацию ре-рендеров, значительно повысив отзывчивость приложения.",
+      "Оптимизировал обработку форм, значительно улучшив точность ввода пользователей и уменьшив количество багов за счет интеграции React Hook Form, что привело к более плавному и интуитивному пользовательскому опыту."
+    ]
+  },
+  "skills": {
+    "groups": [
+      ["JavaScript", "TypeScript", "HTML", "CSS", "SCSS", "React", "NextJS"],
+      ["Zustand", "Redux", "Redux toolkit", "MobX", "react hook form", "tanstack tables"],
+      ["Antd", "MUI", "styled components", "react query", "recharts", "Git"],
+      ["Docker", "NodeJS", "Webpack"]
+    ]
+  },
+  "languages": {
+    "russian": "Русский",
+    "russianLevel": "— Родной",
+    "english": "Английский",
+    "englishLevel": "— B1"
+  },
+  "languageSwitcher": {
+    "ru": "Русский",
+    "en": "English"
+  }
+}
+
