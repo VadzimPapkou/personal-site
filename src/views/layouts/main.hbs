@@ -28,12 +28,12 @@
     <meta name="twitter:description" content="{{t.seo.description}}">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="{{#if (eq lang 'ru')}}index.html{{else}}index-en.html{{/if}}">
+    <link rel="canonical" href="{{t.seo.baseUrl}}{{#if (eq lang 'ru')}}/{{else}}/index-en.html{{/if}}">
     
     <!-- Alternate languages -->
-    <link rel="alternate" hreflang="ru" href="index.html">
-    <link rel="alternate" hreflang="en" href="index-en.html">
-    <link rel="alternate" hreflang="x-default" href="index.html">
+    <link rel="alternate" hreflang="ru" href="{{t.seo.baseUrl}}/">
+    <link rel="alternate" hreflang="en" href="{{t.seo.baseUrl}}/index-en.html">
+    <link rel="alternate" hreflang="x-default" href="{{t.seo.baseUrl}}/">
     
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="sitemap.xml">
