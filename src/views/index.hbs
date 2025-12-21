@@ -40,10 +40,12 @@
                 <section class="section section--experience">
                     <h2 class="section__title">{{t.sections.experience}}</h2>
                     <div class="experience">
-                        <div class="experience__item">
+                        <div class="experience__item" itemscope itemtype="https://schema.org/OrganizationRole">
                             <div class="experience__header">
-                                <h3 class="experience__company">{{t.experience.company}}</h3>
-                                <span class="experience__position">{{t.experience.position}}</span>
+                                <h3 class="experience__company" itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
+                                    <span itemprop="name">{{t.experience.company}}</span>
+                                </h3>
+                                <span class="experience__position" itemprop="roleName">{{t.experience.position}}</span>
                             </div>
                             <div class="experience__period">
                                 <span class="experience__date">{{t.experience.period}}</span>

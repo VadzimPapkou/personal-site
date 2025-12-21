@@ -3,12 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{t.name}} - {{t.title}}</title>
+    <title>{{t.seo.pageTitle}}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="description" content="{{t.seo.description}}">
+    <meta name="keywords" content="{{t.seo.keywords}}">
+    <meta name="author" content="{{t.name}}">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="{{t.seo.pageTitle}}">
+    <meta property="og:description" content="{{t.seo.description}}">
+    <meta property="og:locale" content="{{#if (eq lang 'ru')}}ru_RU{{else}}en_US{{/if}}">
+    <meta property="profile:first_name" content="Vadim">
+    <meta property="profile:last_name" content="Popkov">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{t.seo.pageTitle}}">
+    <meta name="twitter:description" content="{{t.seo.description}}">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{#if (eq lang 'ru')}}index.html{{else}}index-en.html{{/if}}">
+    
+    <!-- Alternate languages -->
+    <link rel="alternate" hreflang="ru" href="index.html">
+    <link rel="alternate" hreflang="en" href="index-en.html">
+    <link rel="alternate" hreflang="x-default" href="index.html">
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "{{t.name}}",
+      "jobTitle": "{{t.title}}",
+      "telephone": "{{t.phone}}",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "{{t.location}}"
+      },
+      "sameAs": [
+        "https://t.me/{{t.telegram}}"
+      ],
+      "knowsAbout": [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "Redux",
+        "SCSS",
+        "Docker",
+        "Node.js",
+        "Webpack"
+      ],
+      "alumniOf": {
+        "@type": "Organization",
+        "name": "{{t.experience.company}}"
+      },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "{{t.experience.company}}"
+      },
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": "{{t.title}}",
+        "occupationLocation": {
+          "@type": "City",
+          "name": "{{t.location}}"
+        },
+        "skills": [
+          "React",
+          "TypeScript",
+          "Next.js",
+          "Redux",
+          "SCSS",
+          "Docker",
+          "Node.js",
+          "Webpack"
+        ]
+      }
+    }
+    </script>
 </head>
 <body>
     {{{body}}}

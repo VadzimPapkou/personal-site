@@ -4,6 +4,11 @@
   "phone": "+375333930022",
   "location": "Minsk, Belarus",
   "telegram": "vadzimpapkou",
+  "seo": {
+    "pageTitle": "Vadim Popkov - Frontend Developer | React, TypeScript, Next.js Developer",
+    "description": "Frontend developer with experience in React, TypeScript, Next.js. Specializing in building high-performance web applications, performance optimization, and improving user experience. Available for projects in Minsk, Belarus.",
+    "keywords": "frontend developer, React developer, TypeScript developer, Next.js developer, web development, JavaScript developer, frontend programmer, React programmer, Minsk, Belarus, web applications, performance optimization, UI/UX development"
+  },
   "sections": {
     "experience": "Professional Experience",
     "skills": "Skills",
@@ -30,7 +35,7 @@
         { "name": "TypeScript", "iconClass": "devicon-typescript-plain" },
         { "name": "NextJS", "iconClass": "devicon-nextjs-original" },
         { "name": "Redux", "iconClass": "devicon-redux-original" },
-        { "name": "SCSS", "iconClass": "devicon-sass-original" },
+        { "name": "SCSS", "iconClass": "devicon-sass-original" }
       ],
       [
         { "name": "Docker", "iconClass": "devicon-docker-plain" },
