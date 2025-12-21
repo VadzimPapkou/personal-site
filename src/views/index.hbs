@@ -1,0 +1,96 @@
+<div class="page">
+    <header class="header">
+        <div class="language-switcher">
+            <div class="language-switcher__container">
+                <a href="index.html" class="language-switcher__link {{#if (eq lang 'ru')}}language-switcher__link--active{{/if}}">
+                    {{t.languageSwitcher.ru}}
+                </a>
+                <span class="language-switcher__separator">|</span>
+                <a href="index-en.html" class="language-switcher__link {{#if (eq lang 'en')}}language-switcher__link--active{{/if}}">
+                    {{t.languageSwitcher.en}}
+                </a>
+            </div>
+        </div>
+        <div class="header__container">
+            <div class="header__content">
+                <div class="header__info">
+                    <h1 class="header__name">{{t.name}}</h1>
+                    <p class="header__title">{{t.title}}</p>
+                </div>
+                <div class="header__contacts">
+                    <a href="tel:{{t.phone}}" class="header__contact header__contact--phone">
+                        <img src="phone.svg" alt="Phone" class="header__contact-icon">
+                        <span class="header__contact-text">{{t.phone}}</span>
+                    </a>
+                    <span class="header__contact header__contact--location">
+                        <img src="location.svg" alt="Location" class="header__contact-icon">
+                        <span class="header__contact-text">{{t.location}}</span>
+                    </span>
+                    <a href="https://t.me/{{t.telegram}}" target="_blank" class="header__contact header__contact--telegram">
+                        <img src="telegram.svg" alt="Telegram" class="header__contact-icon">
+                        <span class="header__contact-text">{{t.telegram}}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+        <main class="main">
+            <div class="main__container">
+                <section class="section section--experience">
+                    <h2 class="section__title">{{t.sections.experience}}</h2>
+                    <div class="experience">
+                        <div class="experience__item">
+                            <div class="experience__header">
+                                <h3 class="experience__company">{{t.experience.company}}</h3>
+                                <span class="experience__position">{{t.experience.position}}</span>
+                            </div>
+                            <div class="experience__period">
+                                <span class="experience__date">{{t.experience.period}}</span>
+                                <span class="experience__location">{{t.experience.location}}</span>
+                            </div>
+                            <p class="experience__description">
+                                {{t.experience.description}}
+                            </p>
+                            <p class="experience__subtitle">{{t.experience.subtitle}}</p>
+                            <ul class="experience__list">
+                                {{#each t.experience.achievements}}
+                                <li class="experience__list-item">{{this}}</li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section section--skills">
+                    <h2 class="section__title">{{t.sections.skills}}</h2>
+                    <div class="skills">
+                        {{#each t.skills.groups}}
+                        <div class="skills__group">
+                            {{#each this}}
+                            <div class="skill">
+                                <i class="{{iconClass}} skill__icon"></i>
+                                <span class="skill__name">{{name}}</span>
+                            </div>
+                            {{/each}}
+                        </div>
+                        {{/each}}
+                    </div>
+                </section>
+
+                <section class="section section--languages">
+                    <h2 class="section__title">{{t.sections.languages}}</h2>
+                    <div class="languages">
+                        <div class="language">
+                            <span class="language__name">{{t.languages.russian}}</span>
+                            <span class="language__level">{{t.languages.russianLevel}}</span>
+                        </div>
+                        <div class="language">
+                            <span class="language__name">{{t.languages.english}}</span>
+                            <span class="language__level">{{t.languages.englishLevel}}</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>

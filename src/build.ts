@@ -4,10 +4,11 @@ import path from 'path';
 import chokidar from 'chokidar';
 
 const LANGUAGES = ['ru', 'en'];
-const VIEWS_DIR = path.join(__dirname, '../views');
-const LOCALES_DIR = path.join(__dirname, '../locales');
+const VIEWS_DIR = path.join(__dirname, '../src/views');
+const LOCALES_DIR = path.join(__dirname, '../src/locales');
 const OUTPUT_DIR = path.join(__dirname, '../dist');
-const STYLES_FILE = path.join(__dirname, '../styles.css');
+const STYLES_FILE = path.join(__dirname, '../src/styles.css');
+const PUBLIC_DIR = path.join(__dirname, '../public');
 
 // Загрузка локали
 const loadLocale = (lang: string): any => {
@@ -54,6 +55,32 @@ const buildHTML = (lang: string): void => {
   console.log(`✓ Built ${outputPath}`);
 };
 
+// Рекурсивное копирование директории
+const copyDirectory = (src: string, dest: string): void => {
+  if (!fs.existsSync(src)) {
+    console.log(`Warning: Source directory ${src} does not exist`);
+    return;
+  }
+  
+  if (!fs.existsSync(dest)) {
+    fs.mkdirSync(dest, { recursive: true });
+  }
+  
+  const entries = fs.readdirSync(src, { withFileTypes: true });
+  
+  for (const entry of entries) {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+    
+    if (entry.isDirectory()) {
+      copyDirectory(srcPath, destPath);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+      console.log(`  → Copied ${entry.name}`);
+    }
+  }
+};
+
 // Копирование статических файлов
 const copyStaticFiles = (): void => {
   if (!fs.existsSync(OUTPUT_DIR)) {
@@ -64,6 +91,15 @@ const copyStaticFiles = (): void => {
   const stylesContent = fs.readFileSync(STYLES_FILE, 'utf-8');
   fs.writeFileSync(path.join(OUTPUT_DIR, 'styles.css'), stylesContent, 'utf-8');
   console.log('✓ Copied styles.css');
+  
+  // Копируем папку public
+  if (fs.existsSync(PUBLIC_DIR)) {
+    console.log(`Copying from ${PUBLIC_DIR} to ${OUTPUT_DIR}`);
+    copyDirectory(PUBLIC_DIR, OUTPUT_DIR);
+    console.log('✓ Copied public directory');
+  } else {
+    console.log(`Warning: Public directory ${PUBLIC_DIR} does not exist`);
+  }
 };
 
 // Сборка всех языков
@@ -87,6 +123,7 @@ const watch = (): void => {
     path.join(VIEWS_DIR, '**/*.hbs'),
     path.join(LOCALES_DIR, '**/*.json'),
     STYLES_FILE,
+    path.join(PUBLIC_DIR, '**/*'),
   ], {
     ignored: /node_modules/,
     persistent: true,

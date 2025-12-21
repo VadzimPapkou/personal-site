@@ -3,7 +3,7 @@
   "title": "Frontend Developer",
   "phone": "+375333930022",
   "location": "Minsk, Belarus",
-  "github": "trueshadowguard",
+  "telegram": "vadzimpapkou",
   "sections": {
     "experience": "Professional Experience",
     "skills": "Skills",
@@ -25,10 +25,18 @@
   },
   "skills": {
     "groups": [
-      ["JavaScript", "TypeScript", "HTML", "CSS", "SCSS", "React", "NextJS"],
-      ["Zustand", "Redux", "Redux toolkit", "MobX", "react hook form", "tanstack tables"],
-      ["Antd", "MUI", "styled components", "react query", "recharts", "Git"],
-      ["Docker", "NodeJS", "Webpack"]
+      [
+        { "name": "React", "iconClass": "devicon-react-original" },
+        { "name": "TypeScript", "iconClass": "devicon-typescript-plain" },
+        { "name": "NextJS", "iconClass": "devicon-nextjs-original" },
+        { "name": "Redux", "iconClass": "devicon-redux-original" },
+        { "name": "SCSS", "iconClass": "devicon-sass-original" },
+      ],
+      [
+        { "name": "Docker", "iconClass": "devicon-docker-plain" },
+        { "name": "NodeJS", "iconClass": "devicon-nodejs-plain" },
+        { "name": "Webpack", "iconClass": "devicon-webpack-plain" }
+      ]
     ]
   },
   "languages": {
