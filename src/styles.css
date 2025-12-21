@@ -302,11 +302,6 @@ body {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.skill:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
-}
-
 .skill__icon {
     font-size: 1.5rem;
     width: 1.5rem;
