@@ -9,6 +9,8 @@ const LOCALES_DIR = path.join(__dirname, '../src/locales');
 const OUTPUT_DIR = path.join(__dirname, '../dist');
 const STYLES_FILE = path.join(__dirname, '../src/styles.css');
 const PUBLIC_DIR = path.join(__dirname, '../public');
+const ROBOTS_FILE = path.join(__dirname, '../src/robots.txt');
+const SITEMAP_FILE = path.join(__dirname, '../src/sitemap.xml');
 
 // Загрузка локали
 const loadLocale = (lang: string): any => {
@@ -81,6 +83,14 @@ const copyDirectory = (src: string, dest: string): void => {
   }
 };
 
+// Генерация sitemap с актуальной датой
+const generateSitemap = (): string => {
+  const today = new Date().toISOString().split('T')[0];
+  const sitemapContent = fs.readFileSync(SITEMAP_FILE, 'utf-8');
+  // Заменяем любую дату в формате YYYY-MM-DD на текущую дату
+  return sitemapContent.replace(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/g, `<lastmod>${today}</lastmod>`);
+};
+
 // Копирование статических файлов
 const copyStaticFiles = (): void => {
   if (!fs.existsSync(OUTPUT_DIR)) {
@@ -91,6 +101,20 @@ const copyStaticFiles = (): void => {
   const stylesContent = fs.readFileSync(STYLES_FILE, 'utf-8');
   fs.writeFileSync(path.join(OUTPUT_DIR, 'styles.css'), stylesContent, 'utf-8');
   console.log('✓ Copied styles.css');
+  
+  // Копируем robots.txt
+  if (fs.existsSync(ROBOTS_FILE)) {
+    const robotsContent = fs.readFileSync(ROBOTS_FILE, 'utf-8');
+    fs.writeFileSync(path.join(OUTPUT_DIR, 'robots.txt'), robotsContent, 'utf-8');
+    console.log('✓ Copied robots.txt');
+  }
+  
+  // Генерируем и копируем sitemap.xml
+  if (fs.existsSync(SITEMAP_FILE)) {
+    const sitemapContent = generateSitemap();
+    fs.writeFileSync(path.join(OUTPUT_DIR, 'sitemap.xml'), sitemapContent, 'utf-8');
+    console.log('✓ Generated sitemap.xml');
+  }
   
   // Копируем папку public
   if (fs.existsSync(PUBLIC_DIR)) {

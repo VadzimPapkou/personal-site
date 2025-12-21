@@ -70,6 +70,7 @@ resume/
 - ✅ Иконки технологий
 - ✅ SEO оптимизация
 - ✅ Микроразметка Schema.org
+- ✅ robots.txt и sitemap.xml
 
 ## Деплой на GitHub Pages
 

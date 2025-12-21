@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://vadzim-papkou.by</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://vadzim-papkou.by"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vadzim-papkou.by/index-en.html"/>
+  </url>
+  <url>
+    <loc>https://vadzim-papkou.by/index-en.html</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://vadzim-papkou.by"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vadzim-papkou.by/index-en.html"/>
+  </url>
+</urlset>
+
