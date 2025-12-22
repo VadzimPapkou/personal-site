@@ -30,19 +30,18 @@
     ]
   },
   "skills": {
-    "groups": [
-      [
-        { "name": "React", "iconClass": "devicon-react-original" },
-        { "name": "TypeScript", "iconClass": "devicon-typescript-plain" },
-        { "name": "NextJS", "iconClass": "devicon-nextjs-original" },
-        { "name": "Redux", "iconClass": "devicon-redux-original" },
-        { "name": "SCSS", "iconClass": "devicon-sass-original" }
-      ],
-      [
-        { "name": "Docker", "iconClass": "devicon-docker-plain" },
-        { "name": "NodeJS", "iconClass": "devicon-nodejs-plain" },
-        { "name": "Webpack", "iconClass": "devicon-webpack-plain" }
-      ]
+    "list": [
+      { "name": "React", "icon": "react.svg" },
+      { "name": "TypeScript", "icon": "typescript.svg" },
+      { "name": "NextJS", "icon": "next.svg" },
+      { "name": "Redux", "icon": "redux.svg" },
+      { "name": "SCSS", "icon": "sass.svg" },
+      { "name": "Tailwind", "icon": "tailwind.svg" },
+      { "name": "TanStack Query", "icon": "react-query.svg" },
+      { "name": "NodeJS", "icon": "nodejs.svg" },
+      { "name": "Docker", "icon": "docker.svg" },
+      { "name": "Webpack", "icon": "webpack.svg" },
+      { "name": "Playwright", "icon": "playwright.svg" }
     ]
   },
   "languages": {

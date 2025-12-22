@@ -287,14 +287,17 @@ body {
 }
 
 .skills__group {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    display: flex;
+    justify-content: stretch;
+    flex-wrap: wrap;
     gap: var(--spacing-sm);
 }
 
 .skill {
     display: flex;
     align-items: center;
+    flex-grow: 1;
+    max-width: 200px;
     gap: var(--spacing-xs);
     padding: var(--spacing-sm);
     background: var(--color-bg-light);
@@ -303,13 +306,14 @@ body {
 }
 
 .skill__icon {
-    font-size: 1.5rem;
     width: 1.5rem;
     height: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    display: block;
     flex-shrink: 0;
+    object-fit: contain;
+    vertical-align: middle;
 }
 
 .skill__icon--text {
@@ -408,6 +412,11 @@ body {
 
     .header__name {
         font-size: 1.75rem;
+    }
+
+    .skill {
+        width: 100%;
+        max-width: unset;
     }
 
     .section {

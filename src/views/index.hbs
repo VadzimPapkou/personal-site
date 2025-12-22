@@ -67,16 +67,14 @@
                 <section class="section section--skills">
                     <h2 class="section__title">{{t.sections.skills}}</h2>
                     <div class="skills">
-                        {{#each t.skills.groups}}
                         <div class="skills__group">
-                            {{#each this}}
+                            {{#each t.skills.list}}
                             <div class="skill">
-                                <i class="{{iconClass}} skill__icon"></i>
+                                <img src="{{icon}}" alt="{{name}}" class="skill__icon">
                                 <span class="skill__name">{{name}}</span>
                             </div>
                             {{/each}}
                         </div>
-                        {{/each}}
                     </div>
                 </section>
 
