@@ -23,10 +23,22 @@
     "description": "I am developing an analytical service for investors.",
     "subtitle": "As a result of my work:",
     "achievements": [
-      "I implemented the practice of creating reusable components, which significantly accelerated the development and increased the loading speed of the site",
-      "Increased load speed by 80% through JavaScript code bundling and lazy loading, improving user experience, enhancing Google web metrics.",
-      "Enhanced app performance by 20% using component memoization and optimizing re-renders, significantly improving the responsiveness of the application.",
-      "Optimized form handling, significantly improving user input accuracy and reducing bugs by integrating React Hook Form, resulting in a more seamless and intuitive user experience."
+      {
+        "action": "Implemented feature-based approach to application organization - storing files belonging to only one feature in one place (instead of storing files by their type)",
+        "result": "accelerated development, unloaded the folder with all components, separated reusable components"
+      },
+      {
+        "action": "Increased load speed by 80% through lazy loading of scripts and images",
+        "result": "improved user experience and enhanced Google metrics"
+      },
+      {
+        "action": "Fixed low performance of application tables using component memoization and re-render optimization",
+        "result": "improved user experience"
+      },
+      {
+        "action": "Optimized form handling, significantly improving user input accuracy and reducing bugs by integrating React Hook Form",
+        "result": "more seamless and intuitive user experience"
+      }
     ]
   },
   "skills": {

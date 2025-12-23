@@ -2,11 +2,13 @@
     <header class="header">
         <div class="language-switcher">
             <div class="language-switcher__container">
-                <a href="index.html" class="language-switcher__link {{#if (eq lang 'ru')}}language-switcher__link--active{{/if}}">
+                <a href="index.html"
+                   class="language-switcher__link {{#if (eq lang 'ru')}}language-switcher__link--active{{/if}}">
                     {{t.languageSwitcher.ru}}
                 </a>
                 <span class="language-switcher__separator">|</span>
-                <a href="index-en.html" class="language-switcher__link {{#if (eq lang 'en')}}language-switcher__link--active{{/if}}">
+                <a href="index-en.html"
+                   class="language-switcher__link {{#if (eq lang 'en')}}language-switcher__link--active{{/if}}">
                     {{t.languageSwitcher.en}}
                 </a>
             </div>
@@ -26,7 +28,8 @@
                         <img src="location.svg" alt="Location" class="header__contact-icon">
                         <span class="header__contact-text">{{t.location}}</span>
                     </span>
-                    <a href="https://t.me/{{t.telegram}}" target="_blank" class="header__contact header__contact--telegram">
+                    <a href="https://t.me/{{t.telegram}}" target="_blank"
+                       class="header__contact header__contact--telegram">
                         <img src="telegram.svg" alt="Telegram" class="header__contact-icon">
                         <span class="header__contact-text">{{t.telegram}}</span>
                     </a>
@@ -35,62 +38,68 @@
         </div>
     </header>
 
-        <main class="main">
-            <div class="main__container">
-                <section class="section section--experience">
-                    <h2 class="section__title">{{t.sections.experience}}</h2>
-                    <div class="experience">
-                        <div class="experience__item" itemscope itemtype="https://schema.org/OrganizationRole">
-                            <div class="experience__header">
-                                <h3 class="experience__company" itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
-                                    <span itemprop="name">{{t.experience.company}}</span>
-                                </h3>
-                                <span class="experience__position" itemprop="roleName">{{t.experience.position}}</span>
-                            </div>
-                            <div class="experience__period">
-                                <span class="experience__date">{{t.experience.period}}</span>
-                                <span class="experience__location">{{t.experience.location}}</span>
-                            </div>
-                            <p class="experience__description">
-                                {{t.experience.description}}
-                            </p>
-                            <p class="experience__subtitle">{{t.experience.subtitle}}</p>
-                            <ul class="experience__list">
-                                {{#each t.experience.achievements}}
-                                <li class="experience__list-item">{{this}}</li>
-                                {{/each}}
-                            </ul>
+    <main class="main">
+        <div class="main__container">
+            <section class="section section--experience">
+                <h2 class="section__title">{{t.sections.experience}}</h2>
+                <div class="experience">
+                    <div class="experience__item" itemscope itemtype="https://schema.org/OrganizationRole">
+                        <div class="experience__header">
+                            <h3 class="experience__company" itemprop="worksFor" itemscope
+                                itemtype="https://schema.org/Organization">
+                                <span itemprop="name">{{t.experience.company}}</span>
+                            </h3>
+                            <span class="experience__position" itemprop="roleName">{{t.experience.position}}</span>
                         </div>
+                        <div class="experience__period">
+                            <span class="experience__date">{{t.experience.period}}</span>
+                            <span class="experience__location">{{t.experience.location}}</span>
+                        </div>
+                        <p class="experience__description">
+                            {{t.experience.description}}
+                        </p>
+                        <p class="experience__subtitle">{{t.experience.subtitle}}</p>
+                        <ul class="experience__list">
+                            {{#each t.experience.achievements}}
+                                <li class="experience__list-item">
+                                    <span>
+                                        <span class="experience__action">{{this.action}}</span>&nbsp;<span class="experience__arrow">→</span>
+                                        <span class="experience__result">{{this.result}}</span>
+                                    </span>
+                                </li>
+                            {{/each}}
+                        </ul>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <section class="section section--skills">
-                    <h2 class="section__title">{{t.sections.skills}}</h2>
-                    <div class="skills">
-                        <div class="skills__group">
-                            {{#each t.skills.list}}
+            <section class="section section--skills">
+                <h2 class="section__title">{{t.sections.skills}}</h2>
+                <div class="skills">
+                    <div class="skills__group">
+                        {{#each t.skills.list}}
                             <div class="skill">
                                 <img src="{{icon}}" alt="{{name}}" class="skill__icon">
                                 <span class="skill__name">{{name}}</span>
                             </div>
-                            {{/each}}
-                        </div>
+                        {{/each}}
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <section class="section section--languages">
-                    <h2 class="section__title">{{t.sections.languages}}</h2>
-                    <div class="languages">
-                        <div class="language">
-                            <span class="language__name">{{t.languages.russian}}</span>
-                            <span class="language__level">{{t.languages.russianLevel}}</span>
-                        </div>
-                        <div class="language">
-                            <span class="language__name">{{t.languages.english}}</span>
-                            <span class="language__level">{{t.languages.englishLevel}}</span>
-                        </div>
+            <section class="section section--languages">
+                <h2 class="section__title">{{t.sections.languages}}</h2>
+                <div class="languages">
+                    <div class="language">
+                        <span class="language__name">{{t.languages.russian}}</span>
+                        <span class="language__level">{{t.languages.russianLevel}}</span>
                     </div>
-                </section>
-            </div>
-        </main>
-    </div>
+                    <div class="language">
+                        <span class="language__name">{{t.languages.english}}</span>
+                        <span class="language__level">{{t.languages.englishLevel}}</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
