@@ -50,7 +50,7 @@
       "startDate": "2022-07-01",
       "endDate": "2022-12-31",
       "location": "Minsk, Belarus",
-      "description": "Maintained legacy application on Backbone.js. Gained experience in debugging and refactoring complex code, writing e2e tests (Playwright), as well as experience working with React (part of the application was on React)."
+      "description": "Worked on an application for managing an auto repair shop shop-ware.com. Maintained the shop-ware application on Backbone.js. Gained experience in debugging and refactoring complex code, writing e2e tests (Playwright), as well as experience working with React (part of the application was on React)."
     }
   ],
   "skills": {
