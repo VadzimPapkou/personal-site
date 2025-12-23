@@ -2,6 +2,14 @@ import * as Handlebars from 'handlebars';
 import fs from 'fs';
 import path from 'path';
 import chokidar from 'chokidar';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ru';
+import 'dayjs/locale/en';
+import duration from 'dayjs/plugin/duration';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+
+dayjs.extend(duration);
+dayjs.extend(customParseFormat);
 
 const LANGUAGES = ['ru', 'en'];
 const VIEWS_DIR = path.join(__dirname, '../src/views');
@@ -22,6 +30,99 @@ const loadLocale = (lang: string): any => {
 // Регистрация helpers для Handlebars
 Handlebars.registerHelper('eq', (a: any, b: any) => a === b);
 
+// Helper для форматирования периода работы
+Handlebars.registerHelper('formatPeriod', (startDate: string, endDate: string | null, lang: string) => {
+  dayjs.locale(lang);
+  const start = dayjs(startDate);
+  const end = endDate ? dayjs(endDate) : dayjs();
+  
+  let startFormatted = start.format('MMM YYYY');
+  let endFormatted = endDate ? end.format('MMM YYYY') : (lang === 'ru' ? 'настоящее время' : 'present');
+  
+  // Капитализируем первую букву для русской локали
+  if (lang === 'ru' && startFormatted) {
+    startFormatted = startFormatted.charAt(0).toUpperCase() + startFormatted.slice(1);
+  }
+  if (lang === 'ru' && endFormatted && endDate) {
+    endFormatted = endFormatted.charAt(0).toUpperCase() + endFormatted.slice(1);
+  }
+  
+  return `${startFormatted} – ${endFormatted}`;
+});
+
+// Helper для вычисления опыта работы в годах и месяцах
+Handlebars.registerHelper('calculateExperience', (startDate: string, endDate: string | null) => {
+  const start = dayjs(startDate);
+  const end = endDate ? dayjs(endDate) : dayjs();
+  
+  const diff = dayjs.duration(end.diff(start));
+  const years = Math.floor(diff.asYears());
+  const months = Math.floor(diff.asMonths() % 12);
+  
+  return { years, months };
+});
+
+// Helper для форматирования опыта работы
+Handlebars.registerHelper('formatExperience', (startDate: string, endDate: string | null, lang: string) => {
+  const { years, months } = Handlebars.helpers.calculateExperience(startDate, endDate) as { years: number; months: number };
+  
+  const parts: string[] = [];
+  if (years > 0) {
+    if (lang === 'ru') {
+      parts.push(`${years} ${years === 1 ? 'год' : years < 5 ? 'года' : 'лет'}`);
+    } else {
+      parts.push(`${years} ${years === 1 ? 'year' : 'years'}`);
+    }
+  }
+  if (months > 0) {
+    if (lang === 'ru') {
+      parts.push(`${months} ${months === 1 ? 'мес' : months < 5 ? 'мес' : 'мес'}`);
+    } else {
+      parts.push(`${months} ${months === 1 ? 'month' : 'months'}`);
+    }
+  }
+  
+  return parts.length > 0 ? parts.join(' ') : (lang === 'ru' ? 'менее месяца' : 'less than a month');
+});
+
+// Helper для вычисления общего опыта работы
+Handlebars.registerHelper('formatTotalExperience', (experiences: any[], lang: string) => {
+  if (!experiences || experiences.length === 0) {
+    return lang === 'ru' ? 'менее месяца' : 'less than a month';
+  }
+  
+  // Вычисляем общий опыт, суммируя все периоды работы
+  let totalMonths = 0;
+  
+  for (const exp of experiences) {
+    const start = dayjs(exp.startDate);
+    const end = exp.endDate ? dayjs(exp.endDate) : dayjs();
+    const diff = dayjs.duration(end.diff(start));
+    totalMonths += Math.floor(diff.asMonths());
+  }
+  
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+  
+  const parts: string[] = [];
+  if (years > 0) {
+    if (lang === 'ru') {
+      parts.push(`${years} ${years === 1 ? 'год' : years < 5 ? 'года' : 'лет'}`);
+    } else {
+      parts.push(`${years} ${years === 1 ? 'year' : 'years'}`);
+    }
+  }
+  if (months > 0) {
+    if (lang === 'ru') {
+      parts.push(`${months} ${months === 1 ? 'мес' : months < 5 ? 'мес' : 'мес'}`);
+    } else {
+      parts.push(`${months} ${months === 1 ? 'month' : 'months'}`);
+    }
+  }
+  
+  return parts.length > 0 ? parts.join(' ') : (lang === 'ru' ? 'менее месяца' : 'less than a month');
+});
+
 // Загрузка шаблона
 const loadTemplate = (): string => {
   const layoutPath = path.join(VIEWS_DIR, 'layouts', 'main.hbs');
@@ -39,6 +140,9 @@ const compileTemplate = (lang: string): string => {
   const template = loadTemplate();
   const compiled = Handlebars.compile(template);
   const t = loadLocale(lang);
+  
+  // Устанавливаем локаль для dayjs
+  dayjs.locale(lang);
   
   return compiled({
     lang,

@@ -205,6 +205,16 @@ body {
     color: var(--color-text);
     border-bottom: 2px solid var(--color-primary);
     padding-bottom: var(--spacing-xs);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.section__title-experience {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--color-text-light);
 }
 
 /* Experience */
@@ -223,6 +233,16 @@ body {
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.experience__duration {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--color-text-light);
 }
 
 .experience__position {
@@ -374,6 +394,39 @@ body {
 
 .language__level {
     color: var(--color-text-light);
+}
+
+/* Education */
+.education__item {
+    margin-bottom: var(--spacing-sm);
+}
+
+.education__university {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.education__degree {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text);
+    display: block;
+    margin-bottom: var(--spacing-xs);
+}
+
+.education__period {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+}
+
+.education__date {
+    font-weight: 500;
 }
 
 /* Responsive */

@@ -13,14 +13,17 @@
   "sections": {
     "experience": "Опыт работы",
     "skills": "Навыки",
+    "education": "Образование",
     "languages": "Языки"
   },
-  "experience": {
-    "company": "InvestEra",
-    "position": "FrontEnd Developer",
-    "period": "Янв 2024 – настоящее время",
-    "location": "Минск, Беларусь",
-    "description": "Разрабатываю аналитический сервис для инвесторов.",
+  "experience": [
+    {
+      "company": "InvestEra",
+      "position": "Frontend Developer",
+      "startDate": "2024-01-01",
+      "endDate": null,
+      "location": "Удаленно",
+      "description": "Разрабатываю аналитический сервис для инвесторов.",
     "subtitle": "В результате моей работы:",
     "achievements": [
       {
@@ -40,7 +43,16 @@
         "result": "более плавный и интуитивный пользовательский опыт"
       }
     ]
-  },
+    },
+    {
+      "company": "YumaSoft",
+      "position": "Frontend Developer",
+      "startDate": "2022-07-01",
+      "endDate": "2022-12-31",
+      "location": "Минск, Беларусь",
+      "description": "Поддержка легаси приложения на Backbone.js. Получил опыт дебаггинга и рефакторинга сложного кода, написания e2e тестов (Playwright), а также опыт работы с React (часть приложения была на React)."
+    }
+  ],
   "skills": {
     "list": [
       { "name": "React", "icon": "react.svg" },
@@ -55,6 +67,12 @@
       { "name": "Webpack", "icon": "webpack.svg" },
       { "name": "Playwright", "icon": "playwright.svg" }
     ]
+  },
+  "education": {
+    "university": "БГМУ (Белорусский государственный медицинский университет)",
+    "degree": "Провизор",
+    "startDate": "2020-09-01",
+    "endDate": "2025-08-30"
   },
   "languages": {
     "russian": "Русский",

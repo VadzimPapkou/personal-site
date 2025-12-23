@@ -13,14 +13,17 @@
   "sections": {
     "experience": "Professional Experience",
     "skills": "Skills",
+    "education": "Education",
     "languages": "Languages"
   },
-  "experience": {
-    "company": "InvestEra",
-    "position": "FrontEnd Developer",
-    "period": "Jan 2024 – present",
-    "location": "Minsk, Belarus",
-    "description": "I am developing an analytical service for investors.",
+  "experience": [
+    {
+      "company": "InvestEra",
+      "position": "Frontend Developer",
+      "startDate": "2024-01-01",
+      "endDate": null,
+      "location": "Remote",
+      "description": "I am developing an analytical service for investors.",
     "subtitle": "As a result of my work:",
     "achievements": [
       {
@@ -40,7 +43,16 @@
         "result": "more seamless and intuitive user experience"
       }
     ]
-  },
+    },
+    {
+      "company": "YumaSoft",
+      "position": "Frontend Developer",
+      "startDate": "2022-07-01",
+      "endDate": "2022-12-31",
+      "location": "Minsk, Belarus",
+      "description": "Maintained legacy application on Backbone.js. Gained experience in debugging and refactoring complex code, writing e2e tests (Playwright), as well as experience working with React (part of the application was on React)."
+    }
+  ],
   "skills": {
     "list": [
       { "name": "React", "icon": "react.svg" },
@@ -55,6 +67,12 @@
       { "name": "Webpack", "icon": "webpack.svg" },
       { "name": "Playwright", "icon": "playwright.svg" }
     ]
+  },
+  "education": {
+    "university": "BSMU (Belarusian State Medical University)",
+    "degree": "Pharmacist",
+    "startDate": "2020-09-01",
+    "endDate": "2025-08-30"
   },
   "languages": {
     "russian": "Russian",

@@ -40,39 +40,6 @@
 
     <main class="main">
         <div class="main__container">
-            <section class="section section--experience">
-                <h2 class="section__title">{{t.sections.experience}}</h2>
-                <div class="experience">
-                    <div class="experience__item" itemscope itemtype="https://schema.org/OrganizationRole">
-                        <div class="experience__header">
-                            <h3 class="experience__company" itemprop="worksFor" itemscope
-                                itemtype="https://schema.org/Organization">
-                                <span itemprop="name">{{t.experience.company}}</span>
-                            </h3>
-                            <span class="experience__position" itemprop="roleName">{{t.experience.position}}</span>
-                        </div>
-                        <div class="experience__period">
-                            <span class="experience__date">{{t.experience.period}}</span>
-                            <span class="experience__location">{{t.experience.location}}</span>
-                        </div>
-                        <p class="experience__description">
-                            {{t.experience.description}}
-                        </p>
-                        <p class="experience__subtitle">{{t.experience.subtitle}}</p>
-                        <ul class="experience__list">
-                            {{#each t.experience.achievements}}
-                                <li class="experience__list-item">
-                                    <span>
-                                        <span class="experience__action">{{this.action}}</span>&nbsp;<span class="experience__arrow">→</span>
-                                        <span class="experience__result">{{this.result}}</span>
-                                    </span>
-                                </li>
-                            {{/each}}
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
             <section class="section section--skills">
                 <h2 class="section__title">{{t.sections.skills}}</h2>
                 <div class="skills">
@@ -83,6 +50,62 @@
                                 <span class="skill__name">{{name}}</span>
                             </div>
                         {{/each}}
+                    </div>
+                </div>
+            </section>
+
+            <section class="section section--experience">
+                <h2 class="section__title">
+                    {{t.sections.experience}}
+                    <span class="section__title-experience">({{formatTotalExperience t.experience lang}})</span>
+                </h2>
+                <div class="experience">
+                    {{#each t.experience}}
+                    <div class="experience__item" itemscope itemtype="https://schema.org/OrganizationRole">
+                        <div class="experience__header">
+                            <h3 class="experience__company" itemprop="worksFor" itemscope
+                                itemtype="https://schema.org/Organization">
+                                <span itemprop="name">{{this.company}}</span>
+                                <span class="experience__duration">({{formatExperience this.startDate this.endDate ../lang}})</span>
+                            </h3>
+                            <span class="experience__position" itemprop="roleName">{{this.position}}</span>
+                        </div>
+                        <div class="experience__period">
+                            <span class="experience__date">{{formatPeriod this.startDate this.endDate ../lang}}</span>
+                            <span class="experience__location">{{this.location}}</span>
+                        </div>
+                        <p class="experience__description">
+                            {{this.description}}
+                        </p>
+                        {{#if this.subtitle}}
+                        <p class="experience__subtitle">{{this.subtitle}}</p>
+                        {{/if}}
+                        {{#if this.achievements}}
+                        <ul class="experience__list">
+                            {{#each this.achievements}}
+                                <li class="experience__list-item">
+                                    <span>
+                                        <span class="experience__action">{{this.action}}</span>&nbsp;<span class="experience__arrow">→</span>
+                                        <span class="experience__result">{{this.result}}</span>
+                                    </span>
+                                </li>
+                            {{/each}}
+                        </ul>
+                        {{/if}}
+                    </div>
+                    {{/each}}
+                </div>
+            </section>
+
+            <section class="section section--education">
+                <h2 class="section__title">{{t.sections.education}}</h2>
+                <div class="education">
+                    <div class="education__item">
+                        <h3 class="education__university">{{t.education.university}}</h3>
+                        <span class="education__degree">{{t.education.degree}}</span>
+                        <div class="education__period">
+                            <span class="education__date">{{formatPeriod t.education.startDate t.education.endDate lang}}</span>
+                        </div>
                     </div>
                 </div>
             </section>
