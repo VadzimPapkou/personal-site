@@ -296,8 +296,7 @@ body {
 .skill {
     display: flex;
     align-items: center;
-    flex-grow: 1;
-    max-width: 200px;
+    width: max-content;
     gap: var(--spacing-xs);
     padding: var(--spacing-sm);
     background: var(--color-bg-light);
