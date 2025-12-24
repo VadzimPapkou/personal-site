@@ -257,11 +257,8 @@ body {
     gap: var(--spacing-sm);
     margin-bottom: var(--spacing-sm);
     font-size: 0.95rem;
+    font-weight: 400;
     color: var(--color-text-light);
-}
-
-.experience__date {
-    font-weight: 500;
 }
 
 .experience__description {
