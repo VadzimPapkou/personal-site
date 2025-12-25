@@ -27,12 +27,12 @@
     "subtitle": "As a result of my work:",
     "achievements": [
       {
-        "action": "Implemented feature-based approach to application organization - storing files belonging to only one feature in one place (instead of storing files by their type)",
-        "result": "accelerated development, unloaded the folder with all components, separated reusable components"
+        "action": "Implemented feature-based approach to application organization - storing files belonging to only one feature in one place, unloaded the folder with all application components, separated reusable components",
+        "result": "accelerated development"
       },
       {
-        "action": "Increased load speed by 80% through lazy loading of scripts and images",
-        "result": "improved user experience and enhanced Google metrics"
+        "action": "Increased load speed by an average of 2.4x (LCP was 8.4, became 3.5) through lazy loading of scripts and images",
+        "result": "improved user experience, improved SEO"
       },
       {
         "action": "Fixed low performance of application tables using component memoization and re-render optimization",
@@ -40,7 +40,7 @@
       },
       {
         "action": "Optimized form handling, significantly improving user input accuracy and reducing bugs by integrating React Hook Form",
-        "result": "more seamless and intuitive user experience"
+        "result": "smoother and more intuitive user experience"
       }
     ]
     },
@@ -50,7 +50,7 @@
       "startDate": "2022-07-01",
       "endDate": "2022-12-31",
       "location": "Minsk, Belarus",
-      "description": "Worked on an application for managing an auto repair shop shop-ware.com. Maintained the shop-ware application on Backbone.js. Gained experience in debugging and refactoring complex code, writing e2e tests (Playwright), as well as experience working with React (part of the application was on React)."
+      "description": "Maintained a legacy application for managing an auto repair shop shop-ware.com on Backbone.js. Gained experience in debugging and refactoring complex code, writing e2e tests (Playwright), as well as experience working with React (part of the application was on React)."
     }
   ],
   "skills": {
@@ -60,8 +60,8 @@
       { "name": "NextJS", "icon": "next.svg" },
       { "name": "Redux", "icon": "redux.svg" },
       { "name": "SCSS", "icon": "sass.svg" },
-      { "name": "Tailwind", "icon": "tailwind.svg" },
       { "name": "TanStack Query", "icon": "react-query.svg" },
+      { "name": "Tailwind", "icon": "tailwind.svg" },
       { "name": "NodeJS", "icon": "nodejs.svg" },
       { "name": "Docker", "icon": "docker.svg" },
       { "name": "Webpack", "icon": "webpack.svg" },
