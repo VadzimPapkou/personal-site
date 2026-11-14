@@ -1,88 +1,120 @@
 {
-  "name": "Вадим Попков",
-  "title": "Frontend Developer",
-  "phone": "+375333930022",
-  "location": "Минск, Беларусь",
-  "telegram": "vadzimpapkou",
-  "seo": {
-    "baseUrl": "https://vadzim-papkou.by",
-    "pageTitle": "Vadim Popkov - Frontend Developer | React, TypeScript, Next.js разработчик",
-    "description": "Frontend разработчик с опытом работы в React, TypeScript, Next.js. Специализируюсь на создании производительных веб-приложений, оптимизации производительности и улучшении пользовательского опыта. Доступен для проектов в Минске, Беларусь.",
-    "keywords": "frontend разработчик, React разработчик, TypeScript разработчик, Next.js разработчик, веб-разработка, JavaScript разработчик, фронтенд программист, React программист, Минск, Беларусь, веб-приложения, оптимизация производительности, UI/UX разработка"
-  },
-  "sections": {
-    "experience": "Опыт работы",
-    "skills": "Навыки",
-    "education": "Образование",
-    "languages": "Языки"
-  },
-  "experience": [
-    {
-      "company": "InvestEra",
-      "position": "Frontend Developer",
-      "startDate": "2024-01-01",
-      "endDate": null,
-      "location": "Удаленно",
-      "description": "Разрабатываю аналитический сервис для инвесторов.",
-    "subtitle": "В результате моей работы:",
-    "achievements": [
-      {
-        "action": "Внедрил feature-based подход к организации приложения - хранение файлов, принадлежащих только одной фиче в одном месте, разгрузил папку со всеми компонентами приложения, отделил переиспользуемые компоненты",
-        "result": "ускорил разработку"
-      },
-      {
-        "action": "Увеличил скорость загрузки в среднем в 2,4 раза (LCP было 8,4 стало 3,5) за счет ленивой загрузки скриптов и изображений",
-        "result": "улучшил пользовательский опыт, улучшил SEO"
-      },
-      {
-        "action": "Исправил низкую производительность таблиц приложения используя мемоизацию компонентов и оптимизацию ре-рендеров",
-        "result": "улучшил пользовательский опыт"
-      },
-      {
-        "action": "Оптимизировал обработку форм, значительно улучшив точность ввода пользователей и уменьшив количество багов за счет интеграции React Hook Form",
-        "result": "более плавный и интуитивный пользовательский опыт"
-      }
-    ]
+    "name": "Вадим Попков",
+    "title": "Frontend Developer",
+    "phone": "+375333930022",
+    "location": "Минск, Беларусь",
+    "telegram": "vadzimpapkou",
+    "seo": {
+        "baseUrl": "https://vadzim-papkou.by",
+        "pageTitle": "Vadim Popkov - Frontend Developer | React, TypeScript, Next.js разработчик",
+        "description": "Frontend разработчик с опытом работы в React, TypeScript, Next.js. Специализируюсь на создании производительных веб-приложений, оптимизации производительности и улучшении пользовательского опыта. Доступен для проектов в Минске, Беларусь.",
+        "keywords": "frontend разработчик, React разработчик, TypeScript разработчик, Next.js разработчик, веб-разработка, JavaScript разработчик, фронтенд программист, React программист, Минск, Беларусь, веб-приложения, оптимизация производительности, UI/UX разработка"
     },
-    {
-      "company": "YumaSoft",
-      "position": "Frontend Developer",
-      "startDate": "2022-07-01",
-      "endDate": "2022-12-31",
-      "location": "Минск, Беларусь",
-      "description": "Поддерживал legacy-приложение для управления автомастерской shop-ware.com на Backbone.js. Получил опыт дебаггинга и рефакторинга сложного кода, написания e2e тестов (Playwright), а также опыт работы с React (часть приложения была на React)."
+    "sections": {
+        "experience": "Опыт работы",
+        "skills": "Навыки",
+        "education": "Образование",
+        "languages": "Языки"
+    },
+    "experience": [
+        {
+            "company": "InvestEra",
+            "position": "Frontend Developer",
+            "startDate": "2024-10-01",
+            "endDate": null,
+            "location": "Удаленно",
+            "description": "Разрабатываю аналитический сервис для инвесторов.",
+            "subtitle": "В результате моей работы:",
+            "achievements": [
+                {
+                    "action": "Внедрил feature-based подход к организации приложения - хранение файлов, принадлежащих только одной фиче в одном месте, разгрузил папку со всеми компонентами приложения, отделил переиспользуемые компоненты",
+                    "result": "ускорил разработку"
+                },
+                {
+                    "action": "Увеличил скорость загрузки в среднем в 2,4 раза (LCP было 8,4 стало 3,5) за счет ленивой загрузки скриптов и изображений",
+                    "result": "улучшил пользовательский опыт, улучшил SEO"
+                },
+                {
+                    "action": "Исправил низкую производительность таблиц приложения используя мемоизацию компонентов и оптимизацию ре-рендеров",
+                    "result": "улучшил пользовательский опыт"
+                },
+                {
+                    "action": "Оптимизировал обработку форм, значительно улучшив точность ввода пользователей и уменьшив количество багов за счет интеграции React Hook Form",
+                    "result": "более плавный и интуитивный пользовательский опыт"
+                }
+            ]
+        },
+        {
+            "company": "YumaSoft",
+            "position": "Frontend Developer",
+            "startDate": "2022-07-01",
+            "endDate": "2022-12-31",
+            "location": "Минск, Беларусь",
+            "description": "Поддерживал legacy-приложение для управления автомастерской shop-ware.com на Backbone.js. Получил опыт дебаггинга и рефакторинга сложного кода, написания e2e тестов (Playwright), а также опыт работы с React (часть приложения была на React)."
+        }
+    ],
+    "skills": {
+        "list": [
+            {
+                "name": "React",
+                "icon": "react.svg"
+            },
+            {
+                "name": "TypeScript",
+                "icon": "typescript.svg"
+            },
+            {
+                "name": "NextJS",
+                "icon": "next.svg"
+            },
+            {
+                "name": "Redux",
+                "icon": "redux.svg"
+            },
+            {
+                "name": "SCSS",
+                "icon": "sass.svg"
+            },
+            {
+                "name": "TanStack Query",
+                "icon": "react-query.svg"
+            },
+            {
+                "name": "Tailwind",
+                "icon": "tailwind.svg"
+            },
+            {
+                "name": "NodeJS",
+                "icon": "nodejs.svg"
+            },
+            {
+                "name": "Docker",
+                "icon": "docker.svg"
+            },
+            {
+                "name": "Webpack",
+                "icon": "webpack.svg"
+            },
+            {
+                "name": "Playwright",
+                "icon": "playwright.svg"
+            }
+        ]
+    },
+    "education": {
+        "university": "БГМУ (Белорусский государственный медицинский университет)",
+        "degree": "Провизор",
+        "startDate": "2020-09-01",
+        "endDate": "2025-08-30"
+    },
+    "languages": {
+        "russian": "Русский",
+        "russianLevel": "— Родной",
+        "english": "Английский",
+        "englishLevel": "— B1"
+    },
+    "languageSwitcher": {
+        "ru": "Русский",
+        "en": "English"
     }
-  ],
-  "skills": {
-    "list": [
-      { "name": "React", "icon": "react.svg" },
-      { "name": "TypeScript", "icon": "typescript.svg" },
-      { "name": "NextJS", "icon": "next.svg" },
-      { "name": "Redux", "icon": "redux.svg" },
-      { "name": "SCSS", "icon": "sass.svg" },
-      { "name": "TanStack Query", "icon": "react-query.svg" },
-      { "name": "Tailwind", "icon": "tailwind.svg" },
-      { "name": "NodeJS", "icon": "nodejs.svg" },
-      { "name": "Docker", "icon": "docker.svg" },
-      { "name": "Webpack", "icon": "webpack.svg" },
-      { "name": "Playwright", "icon": "playwright.svg" }
-    ]
-  },
-  "education": {
-    "university": "БГМУ (Белорусский государственный медицинский университет)",
-    "degree": "Провизор",
-    "startDate": "2020-09-01",
-    "endDate": "2025-08-30"
-  },
-  "languages": {
-    "russian": "Русский",
-    "russianLevel": "— Родной",
-    "english": "Английский",
-    "englishLevel": "— B1"
-  },
-  "languageSwitcher": {
-    "ru": "Русский",
-    "en": "English"
-  }
 }
-

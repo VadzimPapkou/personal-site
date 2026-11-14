@@ -1,88 +1,120 @@
 {
-  "name": "Vadim Popkov",
-  "title": "Frontend Developer",
-  "phone": "+375333930022",
-  "location": "Minsk, Belarus",
-  "telegram": "vadzimpapkou",
-  "seo": {
-    "baseUrl": "https://vadzim-papkou.by",
-    "pageTitle": "Vadim Popkov - Frontend Developer | React, TypeScript, Next.js Developer",
-    "description": "Frontend developer with experience in React, TypeScript, Next.js. Specializing in building high-performance web applications, performance optimization, and improving user experience. Available for projects in Minsk, Belarus.",
-    "keywords": "frontend developer, React developer, TypeScript developer, Next.js developer, web development, JavaScript developer, frontend programmer, React programmer, Minsk, Belarus, web applications, performance optimization, UI/UX development"
-  },
-  "sections": {
-    "experience": "Professional Experience",
-    "skills": "Skills",
-    "education": "Education",
-    "languages": "Languages"
-  },
-  "experience": [
-    {
-      "company": "InvestEra",
-      "position": "Frontend Developer",
-      "startDate": "2024-01-01",
-      "endDate": null,
-      "location": "Remote",
-      "description": "I am developing an analytical service for investors.",
-    "subtitle": "As a result of my work:",
-    "achievements": [
-      {
-        "action": "Implemented feature-based approach to application organization - storing files belonging to only one feature in one place, unloaded the folder with all application components, separated reusable components",
-        "result": "accelerated development"
-      },
-      {
-        "action": "Increased load speed by an average of 2.4x (LCP was 8.4, became 3.5) through lazy loading of scripts and images",
-        "result": "improved user experience, improved SEO"
-      },
-      {
-        "action": "Fixed low performance of application tables using component memoization and re-render optimization",
-        "result": "improved user experience"
-      },
-      {
-        "action": "Optimized form handling, significantly improving user input accuracy and reducing bugs by integrating React Hook Form",
-        "result": "smoother and more intuitive user experience"
-      }
-    ]
+    "name": "Vadim Popkov",
+    "title": "Frontend Developer",
+    "phone": "+375333930022",
+    "location": "Minsk, Belarus",
+    "telegram": "vadzimpapkou",
+    "seo": {
+        "baseUrl": "https://vadzim-papkou.by",
+        "pageTitle": "Vadim Popkov - Frontend Developer | React, TypeScript, Next.js Developer",
+        "description": "Frontend developer with experience in React, TypeScript, Next.js. Specializing in building high-performance web applications, performance optimization, and improving user experience. Available for projects in Minsk, Belarus.",
+        "keywords": "frontend developer, React developer, TypeScript developer, Next.js developer, web development, JavaScript developer, frontend programmer, React programmer, Minsk, Belarus, web applications, performance optimization, UI/UX development"
     },
-    {
-      "company": "YumaSoft",
-      "position": "Frontend Developer",
-      "startDate": "2022-07-01",
-      "endDate": "2022-12-31",
-      "location": "Minsk, Belarus",
-      "description": "Maintained a legacy application for managing an auto repair shop shop-ware.com on Backbone.js. Gained experience in debugging and refactoring complex code, writing e2e tests (Playwright), as well as experience working with React (part of the application was on React)."
+    "sections": {
+        "experience": "Professional Experience",
+        "skills": "Skills",
+        "education": "Education",
+        "languages": "Languages"
+    },
+    "experience": [
+        {
+            "company": "InvestEra",
+            "position": "Frontend Developer",
+            "startDate": "2024-10-01",
+            "endDate": null,
+            "location": "Remote",
+            "description": "I am developing an analytical service for investors.",
+            "subtitle": "As a result of my work:",
+            "achievements": [
+                {
+                    "action": "Implemented feature-based approach to application organization - storing files belonging to only one feature in one place, unloaded the folder with all application components, separated reusable components",
+                    "result": "accelerated development"
+                },
+                {
+                    "action": "Increased load speed by an average of 2.4x (LCP was 8.4, became 3.5) through lazy loading of scripts and images",
+                    "result": "improved user experience, improved SEO"
+                },
+                {
+                    "action": "Fixed low performance of application tables using component memoization and re-render optimization",
+                    "result": "improved user experience"
+                },
+                {
+                    "action": "Optimized form handling, significantly improving user input accuracy and reducing bugs by integrating React Hook Form",
+                    "result": "smoother and more intuitive user experience"
+                }
+            ]
+        },
+        {
+            "company": "YumaSoft",
+            "position": "Frontend Developer",
+            "startDate": "2022-07-01",
+            "endDate": "2022-12-31",
+            "location": "Minsk, Belarus",
+            "description": "Maintained a legacy application for managing an auto repair shop shop-ware.com on Backbone.js. Gained experience in debugging and refactoring complex code, writing e2e tests (Playwright), as well as experience working with React (part of the application was on React)."
+        }
+    ],
+    "skills": {
+        "list": [
+            {
+                "name": "React",
+                "icon": "react.svg"
+            },
+            {
+                "name": "TypeScript",
+                "icon": "typescript.svg"
+            },
+            {
+                "name": "NextJS",
+                "icon": "next.svg"
+            },
+            {
+                "name": "Redux",
+                "icon": "redux.svg"
+            },
+            {
+                "name": "SCSS",
+                "icon": "sass.svg"
+            },
+            {
+                "name": "TanStack Query",
+                "icon": "react-query.svg"
+            },
+            {
+                "name": "Tailwind",
+                "icon": "tailwind.svg"
+            },
+            {
+                "name": "NodeJS",
+                "icon": "nodejs.svg"
+            },
+            {
+                "name": "Docker",
+                "icon": "docker.svg"
+            },
+            {
+                "name": "Webpack",
+                "icon": "webpack.svg"
+            },
+            {
+                "name": "Playwright",
+                "icon": "playwright.svg"
+            }
+        ]
+    },
+    "education": {
+        "university": "BSMU (Belarusian State Medical University)",
+        "degree": "Pharmacist",
+        "startDate": "2020-09-01",
+        "endDate": "2025-08-30"
+    },
+    "languages": {
+        "russian": "Russian",
+        "russianLevel": "— Native",
+        "english": "English",
+        "englishLevel": "— B1"
+    },
+    "languageSwitcher": {
+        "ru": "Русский",
+        "en": "English"
     }
-  ],
-  "skills": {
-    "list": [
-      { "name": "React", "icon": "react.svg" },
-      { "name": "TypeScript", "icon": "typescript.svg" },
-      { "name": "NextJS", "icon": "next.svg" },
-      { "name": "Redux", "icon": "redux.svg" },
-      { "name": "SCSS", "icon": "sass.svg" },
-      { "name": "TanStack Query", "icon": "react-query.svg" },
-      { "name": "Tailwind", "icon": "tailwind.svg" },
-      { "name": "NodeJS", "icon": "nodejs.svg" },
-      { "name": "Docker", "icon": "docker.svg" },
-      { "name": "Webpack", "icon": "webpack.svg" },
-      { "name": "Playwright", "icon": "playwright.svg" }
-    ]
-  },
-  "education": {
-    "university": "BSMU (Belarusian State Medical University)",
-    "degree": "Pharmacist",
-    "startDate": "2020-09-01",
-    "endDate": "2025-08-30"
-  },
-  "languages": {
-    "russian": "Russian",
-    "russianLevel": "— Native",
-    "english": "English",
-    "englishLevel": "— B1"
-  },
-  "languageSwitcher": {
-    "ru": "Русский",
-    "en": "English"
-  }
 }
-
