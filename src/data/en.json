@@ -41,9 +41,6 @@
                 },
                 {
                     "action": "Improved slow data tables with component memoization and re-render optimization in Redux and TanStack Query flows, cutting unnecessary renders"
-                },
-                {
-                    "action": "Styled responsive layouts with SCSS and Tailwind utilities while keeping the design system consistent across desktop and mobile"
                 }
             ]
         },

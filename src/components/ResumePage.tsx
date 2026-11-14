@@ -23,24 +23,6 @@ export function ResumePage({ lang, t }: Props) {
   return (
     <div className="page">
       <main className="container-xl px-3 py-4">
-        <div className="page-actions">
-          <LanguageSwitcher lang={lang} t={t} />
-          <a
-            href={resumeHref}
-            download={resumeFilename}
-            className="resume-download"
-            aria-label={t.resumeDownload}
-            title={t.resumeDownload}
-          >
-            <Image
-              src="/download.svg"
-              alt=""
-              width={16}
-              height={16}
-              className="resume-download__icon"
-            />
-          </a>
-        </div>
         <div className="profile-layout">
           <aside className="profile-sidebar">
             <div className="profile-card Box">
@@ -119,6 +101,24 @@ export function ResumePage({ lang, t }: Props) {
                   </a>
                 </li>
               </ul>
+            </div>
+            <div className="page-actions">
+              <LanguageSwitcher lang={lang} t={t} />
+              <a
+                href={resumeHref}
+                download={resumeFilename}
+                className="resume-download"
+                aria-label={t.resumeDownload}
+                title={t.resumeDownload}
+              >
+                <Image
+                  src="/download.svg"
+                  alt=""
+                  width={16}
+                  height={16}
+                  className="resume-download__icon"
+                />
+              </a>
             </div>
           </aside>
 

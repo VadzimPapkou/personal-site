@@ -65,26 +65,12 @@ img {
 }
 
 .page-actions {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  z-index: 10;
   display: flex;
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
+  margin-top: 12px;
   font-size: var(--text-body-size-small);
-}
-
-/* when viewport ≤ content width, actions sit over the main column */
-@media (max-width: 1280px) and (min-width: 1025px) {
-  .page-actions {
-    top: 6px;
-  }
-
-  .container-xl.py-4 {
-    padding-top: 40px;
-  }
 }
 
 .lang-switcher {
@@ -193,6 +179,8 @@ img {
 }
 
 .profile-sidebar {
+  display: flex;
+  flex-direction: column;
   position: sticky;
   top: 24px;
 }
@@ -536,8 +524,9 @@ img {
 
 @media (max-width: 1024px) {
   .page-actions {
-    position: static;
+    order: -1;
     justify-content: flex-end;
+    margin-top: 0;
     margin-bottom: 12px;
   }
 
