@@ -160,16 +160,21 @@ export function ResumePage({ lang, t }: Props) {
                             >
                               <span className="experience__action">
                                 {achievement.action}
-                              </span>{" "}
-                              <span
-                                className="experience__arrow"
-                                aria-hidden="true"
-                              >
-                                →
-                              </span>{" "}
-                              <span className="experience__result">
-                                {achievement.result}
                               </span>
+                              {achievement.result ? (
+                                <>
+                                  {" "}
+                                  <span
+                                    className="experience__arrow"
+                                    aria-hidden="true"
+                                  >
+                                    →
+                                  </span>{" "}
+                                  <span className="experience__result">
+                                    {achievement.result}
+                                  </span>
+                                </>
+                              ) : null}
                             </li>
                           ))}
                         </ul>

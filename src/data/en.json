@@ -23,12 +23,17 @@
             "startDate": "2024-10-01",
             "endDate": null,
             "location": "Remote",
-            "description": "I am developing an analytical service for investors.",
+            "description": "Solely own the frontend of an analytical service for investors (React, TypeScript)",
             "subtitle": "As a result of my work:",
             "achievements": [
                 {
-                    "action": "Implemented feature-based approach to application organization - storing files belonging to only one feature in one place, unloaded the folder with all application components, separated reusable components",
-                    "result": "accelerated development"
+                    "action": "Built the frontend on React 18, TypeScript, Vite, TanStack Query, and Ant Design: company screener, bonds, funds, futures, macro indicators, subscriptions, and personal account"
+                },
+                {
+                    "action": "Built a portfolio tracking service: trades for stocks, bonds, and futures (long and short, commission, currency), return comparison against MOEX benchmarks, event calendar, and Telegram notifications"
+                },
+                {
+                    "action": "Built a UI kit on top of Ant Design (tables, selects, modals, bottom sheet) and migrated the build from Create React App to Vite"
                 },
                 {
                     "action": "Increased load speed by an average of 2.4x (LCP was 8.4, became 3.5) through lazy loading of scripts and images",
@@ -37,10 +42,6 @@
                 {
                     "action": "Fixed low performance of application tables using component memoization and re-render optimization",
                     "result": "improved user experience"
-                },
-                {
-                    "action": "Optimized form handling, significantly improving user input accuracy and reducing bugs by integrating React Hook Form",
-                    "result": "smoother and more intuitive user experience"
                 }
             ]
         },

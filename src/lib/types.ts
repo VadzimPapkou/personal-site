@@ -2,7 +2,7 @@ export type Lang = "ru" | "en";
 
 export type Achievement = {
   action: string;
-  result: string;
+  result?: string;
 };
 
 export type ExperienceItem = {
