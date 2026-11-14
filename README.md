@@ -27,7 +27,7 @@ npm run dev
 npm run build
 ```
 
-Статика попадает в `out/` (`/` — RU, `/en/` — EN). После `next build` скрипт через Playwright печатает страницы в `vadim-popkov-ru.pdf` / `vadim-popkov-en.pdf` (в `out/` и `public/`), чтобы PDF выглядел как сайт.
+Статика попадает в `out/` (`/` — RU, `/en/` — EN). После `next build` скрипт `build:pdf` собирает ATS-friendly PDF из `src/data/*.json` через Playwright (`vadim-popkov-ru.pdf` / `vadim-popkov-en.pdf` в `out/` и `public/`).
 
 ## Деплой
 

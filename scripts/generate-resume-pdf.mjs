@@ -1,281 +1,290 @@
-import { createServer } from "node:http";
-import { createReadStream, existsSync, statSync } from "node:fs";
+import { readFile } from "node:fs/promises";
 import { mkdir, copyFile } from "node:fs/promises";
-import { extname, join, normalize, resolve } from "node:path";
+import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import dayjs from "dayjs";
+import "dayjs/locale/en.js";
+import "dayjs/locale/ru.js";
 import { chromium } from "playwright";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const root = resolve(__dirname, "..");
-const outDir = join(root, "out");
 const publicDir = join(root, "public");
-
-const MIME = {
-  ".html": "text/html; charset=utf-8",
-  ".js": "text/javascript; charset=utf-8",
-  ".css": "text/css; charset=utf-8",
-  ".json": "application/json",
-  ".svg": "image/svg+xml",
-  ".png": "image/png",
-  ".ico": "image/x-icon",
-  ".woff2": "font/woff2",
-  ".woff": "font/woff",
-  ".pdf": "application/pdf",
-  ".txt": "text/plain; charset=utf-8",
-  ".xml": "application/xml",
-};
+const outDir = join(root, "out");
 
 const targets = [
-  { path: "/", lang: "ru", file: "vadim-popkov-ru.pdf" },
-  { path: "/en/", lang: "en", file: "vadim-popkov-en.pdf" },
+  { lang: "ru", dataFile: "ru.json", file: "vadim-popkov-ru.pdf" },
+  { lang: "en", dataFile: "en.json", file: "vadim-popkov-en.pdf" },
 ];
 
-function startStaticServer(directory) {
-  const server = createServer((req, res) => {
-    try {
-      const url = new URL(req.url ?? "/", "http://127.0.0.1");
-      let pathname = decodeURIComponent(url.pathname);
-      if (pathname.endsWith("/")) {
-        pathname += "index.html";
-      }
+function formatPeriod(startDate, endDate, lang) {
+  dayjs.locale(lang);
+  const start = dayjs(startDate);
+  const end = endDate ? dayjs(endDate) : dayjs();
 
-      const safePath = normalize(pathname).replace(/^(\.\.[/\\])+/, "");
-      const filePath = join(directory, safePath);
+  let startFormatted = start.format("MMM YYYY");
+  let endFormatted = endDate
+    ? end.format("MMM YYYY")
+    : lang === "ru"
+      ? "настоящее время"
+      : "Present";
 
-      if (
-        !filePath.startsWith(directory) ||
-        !existsSync(filePath) ||
-        !statSync(filePath).isFile()
-      ) {
-        res.writeHead(404).end("Not found");
-        return;
-      }
-
-      res.writeHead(200, {
-        "Content-Type": MIME[extname(filePath)] ?? "application/octet-stream",
-        "Cache-Control": "no-store",
-      });
-      createReadStream(filePath).pipe(res);
-    } catch {
-      res.writeHead(500).end("Server error");
+  if (lang === "ru") {
+    startFormatted =
+      startFormatted.charAt(0).toUpperCase() + startFormatted.slice(1);
+    if (endDate) {
+      endFormatted =
+        endFormatted.charAt(0).toUpperCase() + endFormatted.slice(1);
     }
-  });
+  }
 
-  return new Promise((resolveListen) => {
-    server.listen(0, "127.0.0.1", () => {
-      const address = server.address();
-      if (!address || typeof address === "string") {
-        throw new Error("Failed to bind PDF preview server");
-      }
-      resolveListen({ server, port: address.port });
-    });
-  });
+  return `${startFormatted} – ${endFormatted}`;
 }
 
-async function renderPdf(page, baseUrl, target) {
-  await page.addInitScript((lang) => {
-    try {
-      localStorage.setItem("preferred-lang", lang);
-    } catch {
-      // ignore
-    }
-  }, target.lang);
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
 
-  await page.emulateMedia({ media: "screen", colorScheme: "light" });
-  await page.goto(new URL(target.path, baseUrl).href, {
-    waitUntil: "networkidle",
-  });
-  await page.evaluate(() => document.fonts.ready);
-  // Rebuild a plain single-column resume so ATS extraction stays linear
-  await page.evaluate(() => {
-    const text = (el) => (el?.textContent ?? "").replace(/\s+/g, " ").trim();
-    const name = text(document.querySelector(".profile-name"));
-    const title = text(document.querySelector(".profile-title"));
-    const contacts = [...document.querySelectorAll(".vcard-detail")]
-      .map((li) => text(li))
-      .filter(Boolean);
+function contactLine(t) {
+  const websiteLabel = t.website.replace(/^https?:\/\//, "");
+  return [
+    escapeHtml(t.email),
+    escapeHtml(t.phone),
+    escapeHtml(t.location),
+    `@${escapeHtml(t.telegram)}`,
+    escapeHtml(websiteLabel),
+  ].join(" · ");
+}
 
-    const sections = [...document.querySelectorAll(".profile-main > section.Box")].map(
-      (section) => {
-        const heading = text(
-          section.querySelector(".Box-title"),
-        ).replace(/\s+\d+.*$/, "");
-        const kind = heading.toLowerCase();
+function buildResumeHtml(t, lang) {
+  const experienceItems = t.experience
+    .map((item) => {
+      const bullets = (item.achievements ?? [])
+        .map((achievement) => {
+          const text = achievement.result
+            ? `${achievement.action}, ${achievement.result}`
+            : achievement.action;
+          return `<li>${escapeHtml(text)}</li>`;
+        })
+        .join("");
 
-        if (kind.includes("experience") || kind.includes("опыт")) {
-          const roles = [...section.querySelectorAll(".TimelineItem")].map((item) => {
-            const companyEl =
-              item.querySelector(".experience__company [itemprop='name']") ??
-              item.querySelector(".experience__company");
-            const company = text(companyEl)
-              .replace(
-                /\s*\d+\s+(?:years?|months?|год(?:а|ов)?|лет|мес(?:яц(?:а|ев)?)?).*$/i,
-                "",
-              )
-              .replace(/(\D)\d+\s+(?:years?|months?|год(?:а|ов)?|лет|мес).*$/i, "$1")
-              .trim();
-            const position = text(item.querySelector(".experience__position"));
-            const meta = text(item.querySelector(".experience__meta"));
-            const description = text(item.querySelector(".experience__description"));
-            const bullets = [...item.querySelectorAll(".experience__list-item")].map((li) =>
-              text(li).replace(/\s*→\s*/g, ", "),
-            );
-            return { company, position, meta, description, bullets };
-          });
-          return {
-            heading:
-              /experience/i.test(heading)
-                ? "Experience"
-                : heading.startsWith("Опыт")
-                  ? "Опыт работы"
-                  : heading,
-            roles,
-          };
-        }
+      const companyUrl = item.url
+        ? item.url.replace(/^https?:\/\//, "").replace(/\/$/, "")
+        : "";
+      const companyHeading = companyUrl
+        ? `${escapeHtml(item.company)} · ${escapeHtml(companyUrl)}`
+        : escapeHtml(item.company);
 
-        if (kind.includes("skill") || kind.includes("навык")) {
-          const skills = [...section.querySelectorAll(".skill")]
-            .map((skill) => text(skill))
-            .filter(Boolean);
-          return { heading: heading.includes("Навык") ? "Навыки" : "Skills", skills };
-        }
+      return `
+        <article class="role">
+          <h3>${companyHeading}</h3>
+          <p class="role__position">${escapeHtml(item.position)}</p>
+          <p class="role__meta">${escapeHtml(formatPeriod(item.startDate, item.endDate, lang))} · ${escapeHtml(item.location)}</p>
+          <p class="role__description">${escapeHtml(item.description)}</p>
+          ${bullets ? `<ul>${bullets}</ul>` : ""}
+        </article>
+      `;
+    })
+    .join("");
 
-        if (kind.includes("education") || kind.includes("образован")) {
-          return {
-            heading: heading.includes("Образован") ? "Образование" : "Education",
-            university: text(section.querySelector(".education__university")),
-            degree: text(section.querySelector(".education__degree")),
-            period: text(section.querySelector(".text-muted")),
-          };
-        }
+  const skills = t.skills.list.map((skill) => escapeHtml(skill.name)).join(", ");
 
-        if (kind.includes("language") || kind.includes("язык")) {
-          const languages = [...section.querySelectorAll(".language")].map((row) => {
-            const name = text(row.querySelector(".language__name"));
-            const level = text(row.querySelector(".text-muted"));
-            return [name, level].filter(Boolean).join(" — ");
-          });
-          return {
-            heading: heading.includes("Язык") ? "Языки" : "Languages",
-            languages,
-          };
-        }
+  const languages = `<p>${escapeHtml(t.languages.russian)} — ${escapeHtml(t.languages.russianLevel)} · ${escapeHtml(t.languages.english)} — ${escapeHtml(t.languages.englishLevel)}</p>`;
 
-        return { heading, html: section.querySelector(".Box-body")?.innerHTML ?? "" };
-      },
-    );
-
-    const root = document.createElement("div");
-    root.className = "ats-resume";
-
-    const header = document.createElement("header");
-    header.innerHTML = `<h1>${name}</h1><p class="ats-title">${title}</p><p class="ats-contacts">${contacts.join("<br>")}</p>`;
-    root.appendChild(header);
-
-    for (const section of sections) {
-      const el = document.createElement("section");
-      const h2 = document.createElement("h2");
-      h2.textContent = section.heading;
-      el.appendChild(h2);
-
-      if (section.roles) {
-        for (const role of section.roles) {
-          const article = document.createElement("article");
-          article.innerHTML = `
-            <h3>${role.company}</h3>
-            <p class="ats-position">${role.position}</p>
-            <p class="ats-meta">${role.meta}</p>
-            <p>${role.description}</p>
-            <ul>${role.bullets.map((b) => `<li>${b}</li>`).join("")}</ul>
-          `;
-          el.appendChild(article);
-        }
-      } else if (section.skills) {
-        const p = document.createElement("p");
-        p.textContent = section.skills.join(", ");
-        el.appendChild(p);
-      } else if (section.university) {
-        el.innerHTML += `<h3>${section.university}</h3><p>${section.degree}</p><p>${section.period}</p>`;
-      } else if (section.languages) {
-        for (const line of section.languages) {
-          const p = document.createElement("p");
-          p.textContent = line;
-          el.appendChild(p);
-        }
-      }
-
-      root.appendChild(el);
+  return `<!DOCTYPE html>
+<html lang="${lang}">
+<head>
+  <meta charset="utf-8" />
+  <title>${escapeHtml(t.name)} — ${escapeHtml(t.title)}</title>
+  <style>
+    :root {
+      --ink: #14213d;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --line: #d1d5db;
+      --accent: #0f766e;
+      --page: #ffffff;
     }
 
-    document.body.replaceChildren(root);
-  });
+    * {
+      box-sizing: border-box;
+    }
 
-  await page.addStyleTag({
-    content: `
-      html, body {
-        margin: 0 !important;
-        padding: 0 !important;
-        background: #ffffff !important;
-        color: #111111 !important;
-        font-family: Arial, Helvetica, sans-serif !important;
-      }
-      .ats-resume {
-        max-width: 720px !important;
-        margin: 0 !important;
-        padding: 24px !important;
-        display: block !important;
-      }
-      .ats-resume * {
-        position: static !important;
-        float: none !important;
-        display: block !important;
-        width: auto !important;
-        max-width: none !important;
-        box-shadow: none !important;
-        border: 0 !important;
-        background: transparent !important;
-        columns: auto !important;
-        column-count: 1 !important;
-      }
-      .ats-resume ul { padding-left: 18px !important; }
-      .ats-resume li { display: list-item !important; margin: 0 0 6px !important; }
-      .ats-resume h1 { font-size: 28px !important; margin: 0 0 4px !important; }
-      .ats-resume h2 { font-size: 16px !important; margin: 20px 0 8px !important; text-transform: none !important; }
-      .ats-resume h3 { font-size: 14px !important; margin: 12px 0 2px !important; }
-      .ats-resume p { font-size: 13px !important; margin: 0 0 6px !important; line-height: 1.4 !important; }
-      .ats-title { font-size: 15px !important; margin-bottom: 10px !important; }
-      .ats-contacts { margin-bottom: 8px !important; }
-      .ats-meta, .ats-position { color: #333333 !important; }
-    `,
-  });
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--page);
+      color: var(--text);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 10pt;
+      line-height: 1.4;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
 
-  await new Promise((resolve) => setTimeout(resolve, 100));
+    .resume {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0;
+    }
 
-  const metrics = await page.evaluate(() => {
-    const rootEl =
-      document.querySelector(".ats-resume") ??
-      document.querySelector(".page") ??
-      document.body;
-    const rect = rootEl.getBoundingClientRect();
-    return {
-      width: Math.ceil(Math.max(rect.width, 720)),
-      height: Math.ceil(
-        Math.max(
-          rootEl.scrollHeight,
-          document.documentElement.scrollHeight,
-          document.body.scrollHeight,
-        ),
-      ),
-    };
-  });
+    header {
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    h1 {
+      margin: 0 0 2px;
+      color: var(--ink);
+      font-size: 24pt;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .title {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 12pt;
+      font-weight: 600;
+    }
+
+    .contacts {
+      margin: 0;
+      color: var(--muted);
+      font-size: 9pt;
+      line-height: 1.45;
+    }
+
+    section {
+      margin: 0 0 12px;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      padding-bottom: 3px;
+      color: var(--ink);
+      font-size: 10.5pt;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .role {
+      margin: 0 0 11px;
+    }
+
+    .role:last-child {
+      margin-bottom: 0;
+    }
+
+    h3 {
+      margin: 0 0 1px;
+      color: var(--ink);
+      font-size: 11pt;
+      font-weight: 700;
+    }
+
+    .role__position {
+      margin: 0 0 1px;
+      color: var(--text);
+      font-size: 10pt;
+      font-weight: 600;
+    }
+
+    .role__meta {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 9pt;
+    }
+
+    .role__description {
+      margin: 0 0 4px;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0 0 0 16px;
+    }
+
+    li {
+      margin: 0 0 3px;
+    }
+
+    li:last-child {
+      margin-bottom: 0;
+    }
+
+    .skills, .languages p, .education p {
+      margin: 0 0 2px;
+    }
+
+    .education h3 {
+      margin-bottom: 1px;
+    }
+
+    .education .meta {
+      color: var(--muted);
+      font-size: 9pt;
+    }
+  </style>
+</head>
+<body>
+  <main class="resume">
+    <header>
+      <h1>${escapeHtml(t.name)}</h1>
+      <p class="title">${escapeHtml(t.title)}</p>
+      <p class="contacts">${contactLine(t)}</p>
+    </header>
+
+    <section>
+      <h2>${escapeHtml(t.sections.experience)}</h2>
+      ${experienceItems}
+    </section>
+
+    <section>
+      <h2>${escapeHtml(t.sections.skills)}</h2>
+      <p class="skills">${skills}</p>
+    </section>
+
+    <section class="education">
+      <h2>${escapeHtml(t.sections.education)}</h2>
+      <h3>${escapeHtml(t.education.university)}</h3>
+      <p>${escapeHtml(t.education.degree)}</p>
+      <p class="meta">${escapeHtml(formatPeriod(t.education.startDate, t.education.endDate, lang))}</p>
+    </section>
+
+    <section class="languages">
+      <h2>${escapeHtml(t.sections.languages)}</h2>
+      ${languages}
+    </section>
+  </main>
+</body>
+</html>`;
+}
+
+async function renderPdf(page, target, t) {
+  const html = buildResumeHtml(t, target.lang);
+  await page.setContent(html, { waitUntil: "networkidle" });
 
   const pdfPath = join(outDir, target.file);
   await page.pdf({
     path: pdfPath,
-    width: `${metrics.width + 48}px`,
-    height: `${metrics.height + 48}px`,
+    format: "A4",
     printBackground: true,
-    margin: { top: "0", right: "0", bottom: "0", left: "0" },
+    margin: {
+      top: "14mm",
+      right: "15mm",
+      bottom: "14mm",
+      left: "15mm",
+    },
   });
 
   await copyFile(pdfPath, join(publicDir, target.file));
@@ -283,31 +292,27 @@ async function renderPdf(page, baseUrl, target) {
 }
 
 async function main() {
-  if (!existsSync(join(outDir, "index.html"))) {
-    throw new Error("out/ is missing. Run next build first.");
-  }
-
   await mkdir(publicDir, { recursive: true });
+  await mkdir(outDir, { recursive: true });
 
-  const { server, port } = await startStaticServer(outDir);
-  const baseUrl = `http://127.0.0.1:${port}`;
   const browser = await chromium.launch({ headless: true });
 
   try {
     for (const target of targets) {
+      const raw = await readFile(join(root, "src/data", target.dataFile), "utf8");
+      const t = JSON.parse(raw);
       const page = await browser.newPage({
-        viewport: { width: 1200, height: 1600 },
+        viewport: { width: 900, height: 1200 },
         deviceScaleFactor: 2,
       });
       try {
-        await renderPdf(page, baseUrl, target);
+        await renderPdf(page, target, t);
       } finally {
         await page.close();
       }
     }
   } finally {
     await browser.close();
-    await new Promise((resolveClose) => server.close(resolveClose));
   }
 }
 

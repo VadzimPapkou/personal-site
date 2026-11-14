@@ -21,6 +21,7 @@
     "experience": [
         {
             "company": "InvestEra",
+            "url": "https://invest-era.ru",
             "position": "Frontend Developer",
             "startDate": "2024-10-01",
             "endDate": null,

@@ -18,8 +18,6 @@ export function ResumePage({ lang, t }: Props) {
     lang === "en" ? "/vadim-popkov-en.pdf" : "/vadim-popkov-ru.pdf";
   const resumeFilename =
     lang === "en" ? "vadim-popkov-en.pdf" : "vadim-popkov-ru.pdf";
-  const websiteLabel = t.website.replace(/^https?:\/\//, "");
-
   return (
     <div className="page">
       <main className="container-xl px-3 py-4">
@@ -83,23 +81,6 @@ export function ResumePage({ lang, t }: Props) {
                     {`@${t.telegram}`}
                   </a>
                 </li>
-                <li className="vcard-detail">
-                  <Image
-                    src="/download.svg"
-                    alt=""
-                    width={16}
-                    height={16}
-                    className="vcard-icon"
-                  />
-                  <a
-                    href={t.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="Link--primary"
-                  >
-                    {websiteLabel}
-                  </a>
-                </li>
               </ul>
             </div>
             <div className="page-actions">
@@ -151,7 +132,19 @@ export function ResumePage({ lang, t }: Props) {
                           itemScope
                           itemType="https://schema.org/Organization"
                         >
-                          <span itemProp="name">{item.company}</span>
+                          {item.url ? (
+                            <a
+                              href={item.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="Link--primary"
+                              itemProp="name url"
+                            >
+                              {item.company}
+                            </a>
+                          ) : (
+                            <span itemProp="name">{item.company}</span>
+                          )}
                           <span className="Label Label--open experience__duration">
                             {formatExperience(
                               item.startDate,

@@ -7,6 +7,7 @@ export type Achievement = {
 
 export type ExperienceItem = {
   company: string;
+  url?: string;
   position: string;
   startDate: string;
   endDate: string | null;
