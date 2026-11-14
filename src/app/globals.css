@@ -117,19 +117,36 @@ img {
 }
 
 .resume-download {
-  color: var(--fgColor-default);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: var(--fgColor-muted);
   text-decoration: none;
-  padding: 4px 10px;
-  border: 1px solid var(--borderColor-default);
+  border: 1px solid transparent;
   border-radius: var(--borderRadius-medium, 6px);
-  background: var(--bgColor-muted);
-  font-weight: var(--base-text-weight-semibold, 600);
-  line-height: 1.25;
+  background: transparent;
+  line-height: 0;
 }
 
 .resume-download:hover {
+  color: var(--fgColor-default);
   background: var(--bgColor-neutral-muted);
   text-decoration: none;
+}
+
+.resume-download__icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-color-mode="auto"] .resume-download__icon {
+    filter: invert(1);
+    opacity: 0.85;
+  }
 }
 
 /* Layout helpers matching Primer spacing */

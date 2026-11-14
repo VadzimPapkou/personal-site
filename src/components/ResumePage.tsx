@@ -14,6 +14,10 @@ type Props = {
 
 export function ResumePage({ lang, t }: Props) {
   const totalExperience = formatTotalExperience(t.experience, lang);
+  const resumeHref =
+    lang === "en" ? "/vadim-popkov-en.pdf" : "/vadim-popkov-ru.pdf";
+  const resumeFilename =
+    lang === "en" ? "vadim-popkov-en.pdf" : "vadim-popkov-ru.pdf";
 
   return (
     <div className="page">
@@ -21,11 +25,19 @@ export function ResumePage({ lang, t }: Props) {
         <div className="page-actions">
           <LanguageSwitcher lang={lang} t={t} />
           <a
-            href="/resume.pdf"
-            download="Vadim-Popkov-Resume.pdf"
+            href={resumeHref}
+            download={resumeFilename}
             className="resume-download"
+            aria-label={t.resumeDownload}
+            title={t.resumeDownload}
           >
-            {t.resumeDownload}
+            <Image
+              src="/download.svg"
+              alt=""
+              width={16}
+              height={16}
+              className="resume-download__icon"
+            />
           </a>
         </div>
         <div className="profile-layout">
