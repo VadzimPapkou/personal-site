@@ -64,27 +64,33 @@ img {
   background: var(--bgColor-default);
 }
 
-.lang-switcher {
+.page-actions {
   position: absolute;
   top: 16px;
   right: 16px;
   z-index: 10;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   flex-shrink: 0;
   font-size: var(--text-body-size-small);
 }
 
-/* when viewport ≤ content width, switcher sits over the main column */
+/* when viewport ≤ content width, actions sit over the main column */
 @media (max-width: 1280px) and (min-width: 1025px) {
-  .lang-switcher {
+  .page-actions {
     top: 6px;
   }
 
   .container-xl.py-4 {
     padding-top: 40px;
   }
+}
+
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .lang-switcher__link {
@@ -108,6 +114,22 @@ img {
 
 .lang-switcher__sep {
   color: var(--fgColor-muted);
+}
+
+.resume-download {
+  color: var(--fgColor-default);
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid var(--borderColor-default);
+  border-radius: var(--borderRadius-medium, 6px);
+  background: var(--bgColor-muted);
+  font-weight: var(--base-text-weight-semibold, 600);
+  line-height: 1.25;
+}
+
+.resume-download:hover {
+  background: var(--bgColor-neutral-muted);
+  text-decoration: none;
 }
 
 /* Layout helpers matching Primer spacing */
@@ -483,7 +505,7 @@ img {
 }
 
 @media (max-width: 1024px) {
-  .lang-switcher {
+  .page-actions {
     position: static;
     justify-content: flex-end;
     margin-bottom: 12px;

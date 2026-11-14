@@ -59,4 +59,5 @@ export type Locale = {
     ru: string;
     en: string;
   };
+  resumeDownload: string;
 };

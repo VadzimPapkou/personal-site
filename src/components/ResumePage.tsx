@@ -18,7 +18,16 @@ export function ResumePage({ lang, t }: Props) {
   return (
     <div className="page">
       <main className="container-xl px-3 py-4">
-        <LanguageSwitcher lang={lang} t={t} />
+        <div className="page-actions">
+          <LanguageSwitcher lang={lang} t={t} />
+          <a
+            href="/resume.pdf"
+            download="Vadim-Popkov-Resume.pdf"
+            className="resume-download"
+          >
+            {t.resumeDownload}
+          </a>
+        </div>
         <div className="profile-layout">
           <aside className="profile-sidebar">
             <div className="profile-card Box">
