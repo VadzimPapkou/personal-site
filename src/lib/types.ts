@@ -24,9 +24,11 @@ export type Skill = {
 export type Locale = {
   name: string;
   title: string;
+  email: string;
   phone: string;
   location: string;
   telegram: string;
+  website: string;
   seo: {
     baseUrl: string;
     pageTitle: string;

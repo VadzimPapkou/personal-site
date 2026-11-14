@@ -1,9 +1,11 @@
 {
     "name": "Вадим Попков",
     "title": "Frontend Developer",
+    "email": "trueshadowguard@gmail.com",
     "phone": "+375333930022",
     "location": "Гомель, Беларусь",
     "telegram": "vadzimpapkou",
+    "website": "https://vadzim-papkou.by",
     "seo": {
         "baseUrl": "https://vadzim-papkou.by",
         "pageTitle": "Vadim Popkov - Frontend Developer | React, TypeScript, Next.js разработчик",
@@ -23,25 +25,25 @@
             "startDate": "2024-10-01",
             "endDate": null,
             "location": "Удаленно",
-            "description": "Сам веду фронтенд аналитического сервиса для инвесторов (React, TypeScript)",
-            "subtitle": "В результате моей работы:",
+            "description": "Веду фронтенд аналитического сервиса для инвесторов на React, TypeScript и Node.js tooling.",
             "achievements": [
                 {
-                    "action": "Разработал фронтенд на React 18, TypeScript, Vite, TanStack Query и Ant Design: скринер компаний, облигации, фонды, фьючерсы, макропоказатели, подписки и личный кабинет"
+                    "action": "Собрал UI продукта на React 18, TypeScript, Vite, TanStack Query и Ant Design по 7+ модулям: скринер компаний, облигации, фонды, фьючерсы, макропоказатели, подписки и личный кабинет"
                 },
                 {
-                    "action": "Сделал сервис учёта портфеля: сделки по акциям, облигациям и фьючерсам (лонг и шорт, комиссия, валюта), сравнение доходности против бенчмарков MOEX, календарь событий и уведомления в Telegram"
+                    "action": "Сделал сервис учёта портфеля: сделки по акциям, облигациям и фьючерсам (лонг и шорт, комиссия, мультивалюта), сравнение доходности против бенчмарков MOEX, календарь событий и уведомления в Telegram"
                 },
                 {
-                    "action": "Собрал UI-kit поверх Ant Design (таблицы, селекты, модалки, bottom sheet) и перевёл сборку с Create React App на Vite"
+                    "action": "Спроектировал UI-kit поверх Ant Design (таблицы, селекты, модалки, bottom sheet) и перевёл сборку с Create React App на Vite"
                 },
                 {
-                    "action": "Увеличил скорость загрузки в среднем в 2,4 раза (LCP было 8,4 стало 3,5) за счет ленивой загрузки скриптов и изображений",
-                    "result": "улучшил пользовательский опыт, улучшил SEO"
+                    "action": "Увеличил скорость загрузки в 2,4 раза, снизив LCP с 8,4с до 3,5с за счёт ленивой загрузки скриптов и изображений, улучшил UX и SEO"
                 },
                 {
-                    "action": "Исправил низкую производительность таблиц приложения используя мемоизацию компонентов и оптимизацию ре-рендеров",
-                    "result": "улучшил пользовательский опыт"
+                    "action": "Ускорил тяжёлые таблицы через мемоизацию компонентов и оптимизацию ре-рендеров в Redux и TanStack Query"
+                },
+                {
+                    "action": "Сверстал адаптивные экраны на SCSS и Tailwind, сохранив единый дизайн-системный вид на desktop и mobile"
                 }
             ]
         },
@@ -51,7 +53,18 @@
             "startDate": "2022-07-01",
             "endDate": "2022-12-31",
             "location": "Минск, Беларусь",
-            "description": "Поддерживал legacy-приложение для управления автомастерской shop-ware.com на Backbone.js. Получил опыт дебаггинга и рефакторинга сложного кода, написания e2e тестов (Playwright), а также опыт работы с React (часть приложения была на React)."
+            "description": "Поддерживал legacy-приложение для управления автомастерской shop-ware.com.",
+            "achievements": [
+                {
+                    "action": "Поддерживал и рефакторил кодовую базу на Backbone.js, отлаживал сложные legacy-сценарии на десятках экранов"
+                },
+                {
+                    "action": "Написал e2e-тесты на Playwright для критичных пользовательских сценариев и снизил риск регрессий"
+                },
+                {
+                    "action": "Развивал React и JavaScript фичи в модулях, уже переведённых с Backbone.js, включая паттерны под Next.js"
+                }
+            ]
         }
     ],
     "skills": {
@@ -65,7 +78,7 @@
                 "icon": "typescript.svg"
             },
             {
-                "name": "NextJS",
+                "name": "Next.js",
                 "icon": "next.svg"
             },
             {
@@ -85,7 +98,7 @@
                 "icon": "tailwind.svg"
             },
             {
-                "name": "NodeJS",
+                "name": "Node.js",
                 "icon": "nodejs.svg"
             },
             {
@@ -99,6 +112,18 @@
             {
                 "name": "Playwright",
                 "icon": "playwright.svg"
+            },
+            {
+                "name": "JavaScript",
+                "icon": "javascript.svg"
+            },
+            {
+                "name": "Vite",
+                "icon": "vite.svg"
+            },
+            {
+                "name": "Ant Design",
+                "icon": "antd.svg"
             }
         ]
     },
@@ -110,9 +135,9 @@
     },
     "languages": {
         "russian": "Русский",
-        "russianLevel": "— Родной",
+        "russianLevel": "Родной",
         "english": "Английский",
-        "englishLevel": "— B1"
+        "englishLevel": "B1"
     },
     "languageSwitcher": {
         "ru": "Русский",

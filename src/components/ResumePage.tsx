@@ -18,6 +18,7 @@ export function ResumePage({ lang, t }: Props) {
     lang === "en" ? "/vadim-popkov-en.pdf" : "/vadim-popkov-ru.pdf";
   const resumeFilename =
     lang === "en" ? "vadim-popkov-en.pdf" : "vadim-popkov-ru.pdf";
+  const websiteLabel = t.website.replace(/^https?:\/\//, "");
 
   return (
     <div className="page">
@@ -61,6 +62,18 @@ export function ResumePage({ lang, t }: Props) {
                 </li>
                 <li className="vcard-detail">
                   <Image
+                    src="/mail.svg"
+                    alt=""
+                    width={16}
+                    height={16}
+                    className="vcard-icon"
+                  />
+                  <a href={`mailto:${t.email}`} className="Link--primary">
+                    {t.email}
+                  </a>
+                </li>
+                <li className="vcard-detail">
+                  <Image
                     src="/phone.svg"
                     alt=""
                     width={16}
@@ -88,36 +101,28 @@ export function ResumePage({ lang, t }: Props) {
                     {`@${t.telegram}`}
                   </a>
                 </li>
+                <li className="vcard-detail">
+                  <Image
+                    src="/download.svg"
+                    alt=""
+                    width={16}
+                    height={16}
+                    className="vcard-icon"
+                  />
+                  <a
+                    href={t.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="Link--primary"
+                  >
+                    {websiteLabel}
+                  </a>
+                </li>
               </ul>
             </div>
           </aside>
 
           <div className="profile-main">
-            <section className="Box mb-3">
-              <div className="Box-header">
-                <h2 className="Box-title">{t.sections.skills}</h2>
-              </div>
-              <div className="Box-body">
-                <div className="skills">
-                  {t.skills.list.map((skill) => (
-                    <div
-                      key={skill.name}
-                      className="Label Label--secondary skill"
-                    >
-                      <Image
-                        src={`/${skill.icon}`}
-                        alt=""
-                        width={16}
-                        height={16}
-                        className="skill__icon"
-                      />
-                      <span>{skill.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-
             <section className="Box mb-3">
               <div className="Box-header">
                 <h2 className="Box-title">
@@ -203,6 +208,35 @@ export function ResumePage({ lang, t }: Props) {
                     </div>
                   </article>
                 ))}
+              </div>
+            </section>
+
+            <section className="Box mb-3">
+              <div className="Box-header">
+                <h2 className="Box-title">{t.sections.skills}</h2>
+              </div>
+              <div className="Box-body">
+                <div className="skills">
+                  {t.skills.list.map((skill, index) => (
+                    <span key={skill.name} className="skill-wrap">
+                      {index > 0 ? (
+                        <span className="skill__sep" aria-hidden="true">
+                          ,{" "}
+                        </span>
+                      ) : null}
+                      <span className="Label Label--secondary skill">
+                        <Image
+                          src={`/${skill.icon}`}
+                          alt=""
+                          width={16}
+                          height={16}
+                          className="skill__icon"
+                        />
+                        <span>{skill.name}</span>
+                      </span>
+                    </span>
+                  ))}
+                </div>
               </div>
             </section>
 

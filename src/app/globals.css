@@ -338,6 +338,11 @@ img {
   gap: 8px;
 }
 
+.skill-wrap {
+  display: inline-flex;
+  align-items: center;
+}
+
 .skill {
   background-color: var(--bgColor-muted);
   border-color: var(--borderColor-default);
@@ -350,6 +355,14 @@ img {
   width: 16px;
   height: 16px;
   object-fit: contain;
+}
+
+/* Commas stay in the text layer for ATS; keep them visually quiet */
+.skill__sep {
+  font-size: 0;
+  color: transparent;
+  width: 0;
+  overflow: hidden;
 }
 
 /* Timeline / Experience */

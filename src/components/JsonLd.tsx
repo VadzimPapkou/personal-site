@@ -10,12 +10,14 @@ export function JsonLd({ t }: Props) {
     "@type": "Person",
     name: t.name,
     jobTitle: t.title,
+    email: t.email,
     telephone: t.phone,
+    url: t.website,
     address: {
       "@type": "PostalAddress",
       addressLocality: t.location,
     },
-    sameAs: [`https://t.me/${t.telegram}`],
+    sameAs: [`https://t.me/${t.telegram}`, t.website],
     knowsAbout: t.skills.list.map((skill) => skill.name),
     alumniOf: {
       "@type": "Organization",
