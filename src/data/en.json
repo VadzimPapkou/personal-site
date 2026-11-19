@@ -41,7 +41,7 @@
                     "action": "Increased page load speed by 2.4x, reducing LCP from 8.4s to 3.5s through lazy loading of scripts and images, improving user experience and SEO"
                 },
                 {
-                    "action": "Improved slow data tables with component memoization and re-render optimization in Redux and TanStack Query flows, cutting unnecessary renders"
+                    "action": "Optimized ready-made portfolio tables with virtualization: sorting, filters, and smooth handling of thousands of rows"
                 }
             ]
         },
